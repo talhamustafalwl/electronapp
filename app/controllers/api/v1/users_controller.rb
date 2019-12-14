@@ -30,9 +30,11 @@ module Api
             end
 
             def logout
-                params2=params[:email].first 
-                @user = User.where(email: params2[:email]).first
-                @user.update(status:0)
+                if params[:email].present?
+                    params2=params[:email].first 
+                    @user = User.where(email: params2[:email]).first
+                    @user.update(status:0)
+                end
             end
 
             def index
